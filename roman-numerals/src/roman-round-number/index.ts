@@ -4,6 +4,16 @@ const romanRoundNumbers: RomanRoundNumberType[] = [
   1, 5, 10, 50, 100, 500, 1_000,
 ];
 
+const romanEquivalency: Record<number, string | undefined> = {
+  1: "I",
+  5: "V",
+  10: "X",
+  50: "L",
+  100: "C",
+  500: "D",
+  1_000: "M",
+};
+
 export class RomanRoundNumber {
   private constructor(public readonly decimal: RomanRoundNumberType) {}
 
@@ -25,16 +35,6 @@ export class RomanRoundNumber {
   }
 
   public toRomanNumeral() {
-    const romanEquivalency: Record<number, string | undefined> = {
-      1: "I",
-      5: "V",
-      10: "X",
-      50: "L",
-      100: "C",
-      500: "D",
-      1_000: "M",
-    };
-
     return romanEquivalency[this.decimal];
   }
 }
