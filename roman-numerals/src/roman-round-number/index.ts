@@ -5,13 +5,14 @@ const romanRoundNumbers: RomanRoundNumberType[] = [
 ];
 
 export class RomanRoundNumber {
-  private constructor(public readonly romanRoundNumber: RomanRoundNumberType) {}
+  private constructor(public readonly decimal: RomanRoundNumberType) {}
 
   public static fromDecimal(decimal: number) {
     const romanRoundNumber =
       this.getNearestRomanRoundNumberSmallerThanDecimal(decimal);
     return new RomanRoundNumber(romanRoundNumber);
   }
+
   private static getNearestRomanRoundNumberSmallerThanDecimal(
     decimal: number
   ): RomanRoundNumberType {
@@ -23,7 +24,7 @@ export class RomanRoundNumber {
     return romanRoundNumbers[0];
   }
 
-  public toEquivalency() {
+  public toRomanNumeral() {
     const romanEquivalency: Record<number, string | undefined> = {
       1: "I",
       5: "V",
@@ -34,6 +35,6 @@ export class RomanRoundNumber {
       1_000: "M",
     };
 
-    return romanEquivalency[this.romanRoundNumber];
+    return romanEquivalency[this.decimal];
   }
 }

@@ -22,7 +22,7 @@ describe("Roman Numerals Getter", () => {
 
     it("3 -> III", expectNumberToEqualAsRoman(3, "III"));
 
-    // it("20 -> XX", expectNumberToEqualAsRoman(20, "XX"));
+    it("20 -> XX", expectNumberToEqualAsRoman(20, "XX"));
   });
 });
 

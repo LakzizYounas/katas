@@ -13,13 +13,10 @@ export class GetRomanNumerals {
 
   private getRomanNumerals() {
     let romanNumerals = "";
-    for (
-      let i = this.decimal - this.romanRoundNumber.romanRoundNumber;
-      i >= 0;
-      i--
-    ) {
-      romanNumerals += this.romanRoundNumber.toEquivalency();
-    }
+
+    for (let i = this.decimal; i > 0; i -= this.romanRoundNumber.decimal)
+      romanNumerals += this.romanRoundNumber.toRomanNumeral();
+
     return romanNumerals;
   }
 }
