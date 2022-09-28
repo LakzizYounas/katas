@@ -14,8 +14,12 @@ export class GetRomanNumerals {
   private getRomanNumerals() {
     let romanNumerals = "";
 
-    for (let i = this.decimal; i > 0; i -= this.romanRoundNumber.decimal)
-      romanNumerals += this.romanRoundNumber.toRomanNumeral();
+    for (
+      let bigestRomanNumeral = this.romanRoundNumber.popRomanNumeral();
+      bigestRomanNumeral;
+      bigestRomanNumeral = this.romanRoundNumber.popRomanNumeral()
+    )
+      romanNumerals += bigestRomanNumeral;
 
     return romanNumerals;
   }

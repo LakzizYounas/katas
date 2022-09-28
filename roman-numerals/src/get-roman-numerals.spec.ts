@@ -11,10 +11,14 @@ describe("Roman Numerals Getter", () => {
     it("1000 -> M", expectNumberToEqualAsRoman(1000, "M"));
   });
 
-  describe("Addition", () => {
+  describe("Simple Addition", () => {
     it("2 -> II", expectNumberToEqualAsRoman(2, "II"));
     it("3 -> III", expectNumberToEqualAsRoman(3, "III"));
     it("20 -> XX", expectNumberToEqualAsRoman(20, "XX"));
+  });
+
+  describe("Composed Addition", () => {
+    it("6 -> VI", expectNumberToEqualAsRoman(6, "VI"));
   });
 });
 
