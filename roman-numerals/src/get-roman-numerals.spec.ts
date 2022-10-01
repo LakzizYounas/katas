@@ -36,6 +36,10 @@ describe("Roman Numerals Getter", () => {
       expectNumberToEqualAsRoman(4987, "MMMMCMLXXXVII")
     );
   });
+
+  describe("Bound Cases", () => {
+    it("(0)    -> ()", expectNumberToEqualAsRoman(0, ""));
+  });
 });
 
 function expectNumberToEqualAsRoman(number: number, romanNumerals: string) {
