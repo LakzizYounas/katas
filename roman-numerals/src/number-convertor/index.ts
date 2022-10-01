@@ -1,27 +1,40 @@
-type RomanRoundNumberType = 1 | 5 | 10 | 50 | 100 | 500 | 1_000;
-
-const romanRoundNumbers: RomanRoundNumberType[] = [
-  1, 5, 10, 50, 100, 500, 1_000,
-];
-
 const romanEquivalency: Record<number, string> = {
   1: "I",
+  4: "IV",
   5: "V",
+  9: "IX",
   10: "X",
+  40: "XL",
   50: "L",
+  90: "XC",
   100: "C",
+  400: "CD",
   500: "D",
+  900: "CM",
   1_000: "M",
 };
 
-export class RomanRoundNumber {
-  private constructor(public decimal: number) {}
+export class NumberConvertor {
+  private constructor(private decimal: number) {}
 
   public static fromDecimal(decimal: number) {
-    return new RomanRoundNumber(decimal);
+    return new NumberConvertor(decimal);
   }
 
-  public popRomanNumeral(): string {
+  public toRomanNumerals() {
+    let romanNumerals = "";
+
+    for (
+      let biggestRomanNumeral = this.getBiggest();
+      biggestRomanNumeral;
+      biggestRomanNumeral = this.getBiggest()
+    )
+      romanNumerals += biggestRomanNumeral;
+
+    return romanNumerals;
+  }
+
+  private getBiggest(): string {
     const romanRoundNumber = this.getNearestRomanRoundNumberSmallerThanDecimal(
       this.decimal
     );
@@ -32,6 +45,8 @@ export class RomanRoundNumber {
   }
 
   private getNearestRomanRoundNumberSmallerThanDecimal(decimal: number) {
+    const romanRoundNumbers = Object.keys(romanEquivalency).map((nb) => +nb);
+
     for (let i = romanRoundNumbers.length; i >= 0; i--) {
       if (decimal >= romanRoundNumbers[i]) {
         return romanRoundNumbers[i];

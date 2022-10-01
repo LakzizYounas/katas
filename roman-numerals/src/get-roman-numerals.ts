@@ -1,26 +1,13 @@
-import { RomanRoundNumber } from "./roman-round-number";
+import { NumberConvertor } from "./number-convertor";
 
 export class GetRomanNumerals {
-  private romanRoundNumber: RomanRoundNumber;
+  private numberConvertor: NumberConvertor;
 
   constructor(private readonly decimal: number) {
-    this.romanRoundNumber = RomanRoundNumber.fromDecimal(this.decimal);
+    this.numberConvertor = NumberConvertor.fromDecimal(this.decimal);
   }
 
   public execute(): string {
-    return this.getRomanNumerals();
-  }
-
-  private getRomanNumerals() {
-    let romanNumerals = "";
-
-    for (
-      let bigestRomanNumeral = this.romanRoundNumber.popRomanNumeral();
-      bigestRomanNumeral;
-      bigestRomanNumeral = this.romanRoundNumber.popRomanNumeral()
-    )
-      romanNumerals += bigestRomanNumeral;
-
-    return romanNumerals;
+    return this.numberConvertor.toRomanNumerals();
   }
 }
