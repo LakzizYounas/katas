@@ -18,7 +18,7 @@ export class RomanEquivalency {
     1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1_000,
   ];
 
-  private static romanEquivalency: Record<RomanDecimal, string | undefined> = {
+  private static romanEquivalency: Record<RomanDecimal, string> = {
     1: "I",
     4: "IV",
     5: "V",
@@ -35,5 +35,5 @@ export class RomanEquivalency {
   };
 
   public static toRomanCharacter = (romanRoundDecimal: RomanDecimal) =>
-    this.romanEquivalency[romanRoundDecimal] ?? "";
+    this.romanEquivalency[romanRoundDecimal];
 }
