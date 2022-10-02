@@ -1,3 +1,4 @@
+import { OnlyPositiveInteger } from "./biggest-roman-number/only-positive.error";
 import { GetRomanNumerals } from "./get-roman-numerals";
 
 describe("Roman Numerals Getter", () => {
@@ -38,7 +39,10 @@ describe("Roman Numerals Getter", () => {
   });
 
   describe("Bound Cases", () => {
-    it("(0)    -> ()", expectNumberToEqualAsRoman(0, ""));
+    it("(-1)   -> (OnlyPositiveInteger)", () => {
+      const run = () => new GetRomanNumerals(-1).execute();
+      expect(run).toThrow(OnlyPositiveInteger);
+    });
   });
 });
 

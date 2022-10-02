@@ -13,8 +13,8 @@ export class GetRomanNumerals {
 
     do {
       const romanRoundNumber = BiggestRomanNumber.fromDecimal(rest);
-      romanNumerals += romanRoundNumber.romanNumeral;
-      rest -= romanRoundNumber.rest;
+      romanNumerals += romanRoundNumber.roman;
+      rest -= romanRoundNumber.decimal;
     } while (rest);
 
     return romanNumerals;

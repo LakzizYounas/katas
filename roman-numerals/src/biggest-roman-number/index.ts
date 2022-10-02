@@ -1,51 +1,34 @@
-const romanEquivalency: Record<number, string | undefined> = {
-  1: "I",
-  4: "IV",
-  5: "V",
-  9: "IX",
-  10: "X",
-  40: "XL",
-  50: "L",
-  90: "XC",
-  100: "C",
-  400: "CD",
-  500: "D",
-  900: "CM",
-  1_000: "M",
-};
+import { RomanDecimal, RomanEquivalency } from "../roman-equivalency";
+import { OnlyPositiveInteger } from "./only-positive.error";
 
 export class BiggestRomanNumber {
-  public romanNumeral: string;
-  public rest = 0;
+  public roman = "";
+  public decimal!: RomanDecimal;
 
-  private constructor(private decimal: number) {
-    this.romanNumeral = this.getBiggestRoman();
+  private constructor(decimalToConvert: number) {
+    this.getBiggestRoman(decimalToConvert);
   }
 
   public static fromDecimal(decimal: number) {
     return new BiggestRomanNumber(decimal);
   }
 
-  private getBiggestRoman(): string {
-    const romanRoundDecimal = this.getNearestRomanDecimalSmallerThanDecimal(
-      this.decimal
-    );
+  private getBiggestRoman(decimalToConvert: number) {
+    const romanRoundDecimal =
+      this.getNearestRomanDecimalSmallerThanDecimal(decimalToConvert);
 
-    this.decimal = this.decimal - romanRoundDecimal;
-    this.rest = romanRoundDecimal;
-
-    return romanEquivalency[romanRoundDecimal] ?? "";
+    this.decimal = romanRoundDecimal;
+    this.roman = RomanEquivalency.toRomanCharacter(romanRoundDecimal);
   }
 
-  private getNearestRomanDecimalSmallerThanDecimal(decimal: number) {
-    const romanRoundNumbers = Object.keys(romanEquivalency).map((nb) => +nb);
+  private getNearestRomanDecimalSmallerThanDecimal(
+    decimal: number
+  ): RomanDecimal {
+    const romanRoundNumbers = RomanEquivalency.decimals;
 
-    for (let i = romanRoundNumbers.length; i >= 0; i--) {
-      if (decimal >= romanRoundNumbers[i]) {
-        return romanRoundNumbers[i];
-      }
-    }
+    for (let i = romanRoundNumbers.length; i >= 0; i--)
+      if (decimal >= romanRoundNumbers[i]) return romanRoundNumbers[i];
 
-    return 0;
+    throw new OnlyPositiveInteger();
   }
 }
