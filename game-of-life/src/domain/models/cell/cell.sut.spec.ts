@@ -1,7 +1,10 @@
 import { LivingNeighboursCount } from '../living-neighbours';
+import { Position } from '../position';
 import { Cell } from './cell.abstract';
 
-type InstantiableCell = new () => Cell;
+type InstantiableCell = new (position: Position) => Cell;
+
+const ARBITRARY_POSITION = new Position({ x: 4, y: 3 });
 
 export class SUT {
   private cellToInstantiate!: InstantiableCell;
@@ -21,7 +24,7 @@ export class SUT {
   };
 
   private whenEvolving = () => {
-    const cell = new this.cellToInstantiate();
+    const cell = new this.cellToInstantiate(ARBITRARY_POSITION);
 
     const evolvedCell = cell.evolve(
       new LivingNeighboursCount(this.neighboursCount)

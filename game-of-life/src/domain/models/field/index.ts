@@ -18,7 +18,7 @@ export class Field {
     for (let i = 0; i < cells.length; i++) {
       const line: Cell[] = new Array(this.size.width);
       for (let j = 0; j < line.length; j++) {
-        line[j] = new DeadCell();
+        line[j] = new DeadCell(new Position({ x: j, y: i }));
       }
       cells[i] = line;
     }
@@ -31,11 +31,11 @@ export class Field {
   }
 
   public resurect(position: Position) {
-    this._cells[position.y][position.x] = new LivingCell();
+    this._cells[position.y][position.x] = new LivingCell(position);
   }
 
   public kill(position: Position) {
-    this._cells[position.y][position.x] = new DeadCell();
+    this._cells[position.y][position.x] = new DeadCell(position);
   }
 
   public passCycle() {

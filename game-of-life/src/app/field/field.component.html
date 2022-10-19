@@ -1,5 +1,5 @@
 <div *ngFor="let line of field.getCells()">
   <div *ngFor="let cell of line">
-    {{ cell }}
+    <app-cell [cell]="cell"></app-cell>
   </div>
 </div>

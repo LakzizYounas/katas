@@ -1,8 +1,11 @@
 import { LivingNeighboursCount } from '../living-neighbours';
+import { Position } from '../position';
 import { Cell } from './cell.abstract';
 import { DeadCell } from './dead-cell';
 
-export class LivingCell extends Cell {
+export class LivingCell implements Cell {
+  constructor(public position: Position) {}
+
   public evolve(livingNeighboursCount: LivingNeighboursCount): Cell {
     if (this.shouldSurvive(livingNeighboursCount)) {
       return this.survives();
@@ -16,7 +19,7 @@ export class LivingCell extends Cell {
   }
 
   private dies(): DeadCell {
-    return new DeadCell();
+    return new DeadCell(this.position);
   }
 
   private shouldSurvive(livingNeighboursCount: LivingNeighboursCount): boolean {
@@ -24,6 +27,6 @@ export class LivingCell extends Cell {
   }
 
   private survives(): LivingCell {
-    return new LivingCell();
+    return new LivingCell(this.position);
   }
 }

@@ -5,9 +5,10 @@ import { Field } from 'src/domain/models/field';
 import { FieldSize } from 'src/domain/models/field-size';
 
 import { FieldComponent } from './field.component';
+import { CellComponent } from '../cell/cell.component';
 
 @NgModule({
-  declarations: [FieldComponent],
+  declarations: [FieldComponent, CellComponent],
   providers: [
     {
       provide: Field,
