@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Field } from 'src/domain/models/field';
+import { FieldAggregate } from 'src/domain/aggregates/field';
 
 @Component({
   selector: 'app-field',
@@ -8,5 +8,5 @@ import { Field } from 'src/domain/models/field';
   styleUrls: ['./field.component.css'],
 })
 export class FieldComponent {
-  constructor(public readonly field: Field) {}
+  constructor(public readonly field: FieldAggregate) {}
 }

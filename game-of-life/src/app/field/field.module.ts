@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Field } from 'src/domain/models/field';
-import { FieldSize } from 'src/domain/models/field-size';
+import { FieldAggregate, FieldSize } from 'src/domain/aggregates/field';
 
 import { FieldComponent } from './field.component';
 import { CellComponent } from '../cell/cell.component';
@@ -11,8 +10,9 @@ import { CellComponent } from '../cell/cell.component';
   declarations: [FieldComponent, CellComponent],
   providers: [
     {
-      provide: Field,
-      useFactory: () => new Field(new FieldSize({ width: 3, height: 3 })),
+      provide: FieldAggregate,
+      useFactory: () =>
+        new FieldAggregate(new FieldSize({ width: 3, height: 3 })),
     },
   ],
   imports: [CommonModule],
