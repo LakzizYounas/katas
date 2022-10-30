@@ -3,7 +3,7 @@ interface Props {
   y: number;
 }
 
-export class Position {
+export class CellPosition {
   private _x: number;
   private _y: number;
 

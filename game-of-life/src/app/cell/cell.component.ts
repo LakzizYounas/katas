@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Cell } from 'src/domain/models/cell/cell.abstract';
+
+import { Cell } from 'src/domain/aggregates/field';
 
 @Component({
   selector: 'app-cell',

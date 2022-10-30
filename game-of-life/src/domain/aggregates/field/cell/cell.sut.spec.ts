@@ -1,10 +1,10 @@
 import { LivingNeighboursCount } from '../living-neighbours';
-import { Position } from '../position';
+import { CellPosition } from '../cell-position';
 import { Cell } from './cell.abstract';
 
-type InstantiableCell = new (position: Position) => Cell;
+type InstantiableCell = new (position: CellPosition) => Cell;
 
-const ARBITRARY_POSITION = new Position({ x: 4, y: 3 });
+const ARBITRARY_POSITION = new CellPosition({ x: 4, y: 3 });
 
 export class SUT {
   private cellToInstantiate!: InstantiableCell;
@@ -38,12 +38,12 @@ export class SUT {
   };
 
   private expectCellToBeAlive = () => {
-    const isAlive = this.evolvedCell.isAlive();
+    const isAlive = this.evolvedCell.alive;
     expect(isAlive).toBeTrue();
   };
 
   private expectCellToBeDead = () => {
-    const isAlive = this.evolvedCell.isAlive();
+    const isAlive = this.evolvedCell.alive;
     expect(isAlive).toBeFalse();
   };
 }

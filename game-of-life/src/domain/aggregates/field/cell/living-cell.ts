@@ -1,10 +1,12 @@
 import { LivingNeighboursCount } from '../living-neighbours';
-import { Position } from '../position';
+import { CellPosition } from '../cell-position';
 import { Cell } from './cell.abstract';
 import { DeadCell } from './dead-cell';
 
 export class LivingCell implements Cell {
-  constructor(public position: Position) {}
+  public readonly alive = true;
+
+  constructor(public position: CellPosition) {}
 
   public evolve(livingNeighboursCount: LivingNeighboursCount): Cell {
     if (this.shouldSurvive(livingNeighboursCount)) {
@@ -12,10 +14,6 @@ export class LivingCell implements Cell {
     }
 
     return this.dies();
-  }
-
-  public isAlive(): true {
-    return true;
   }
 
   private dies(): DeadCell {

@@ -1,8 +1,8 @@
 import { LivingNeighboursCount } from '../living-neighbours';
-import { Position } from '../position';
+import { CellPosition } from '../cell-position';
 
 export abstract class Cell {
   public abstract evolve(livingNeighboursCount: LivingNeighboursCount): Cell;
-  public abstract isAlive(): boolean;
-  public abstract position: Position;
+  public abstract alive: boolean;
+  public abstract position: CellPosition;
 }
